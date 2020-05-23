@@ -1,0 +1,29 @@
+name: Acquire activation file
+on: push
+jobs:
+  requestManualActivationFile:
+    name: Request manual activation file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Read unity editor version
+        id: readUnityEditorVersion
+        uses: CumulusDS/get-yaml-paths-action@v0.1.0
+        with:
+          file: VitDeck/ProjectSettings/ProjectVersion.txt
+          value: m_EditorVersion
+
+      - name: Create manual activation file
+        id: createManualLicenseFile
+        uses: webbertakken/unity-request-manual-activation-file@v1.1
+        with:
+          projectPath: VitDeck
+          unityVersion: ${{ steps.readUnityEditorVersion.outputs.value }}
+
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.createManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.createManualLicenseFile.outputs.filePath }}
