@@ -13,14 +13,13 @@ jobs:
         uses: CumulusDS/get-yaml-paths-action@v0.1.0
         with:
           file: VitDeck/ProjectSettings/ProjectVersion.txt
-          value: m_EditorVersion
+          versionOutput: m_EditorVersion
 
       - name: Create manual activation file
         id: createManualLicenseFile
         uses: webbertakken/unity-request-manual-activation-file@v1.1
         with:
-          projectPath: VitDeck
-          unityVersion: ${{ steps.readUnityEditorVersion.outputs.value }}
+          unityVersion: ${{ steps.readUnityEditorVersion.outputs.versionOutput }}
 
       - name: Expose as artifact
         uses: actions/upload-artifact@v1
