@@ -1,5 +1,8 @@
 name: Acquire activation file
-on: push
+on:
+  push:
+    paths: 
+      - 'VitDeck/ProjectSettings/ProjectVersion.txt'
 jobs:
   requestManualActivationFile:
     name: Request manual activation file
