@@ -50,7 +50,7 @@ namespace VitDeck.AssetGuardian.Tests
                 typeof(TestSceneAsset),
                 typeof(TestAudioMixerAsset),
                 typeof(TestComputeShaderAsset),
-                typeof(TestVideoClipAsset),
+                // typeof(TestVideoClipAsset),
                 typeof(TestAvatarMaskAsset),
             };
         }
